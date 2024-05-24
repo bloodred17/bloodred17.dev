@@ -5,12 +5,11 @@ import Section from '@/components/Section.astro';
 import Card from '@/components/Card.astro';
 import Heading from '@/components/Heading.astro';
 import { sortPostsByDate } from '@/utils/data.util';
+import { BlogPostInstance } from '../../utils/types';
 
 const { title } = AppConfig;
 const { description } = AppConfig;
-console.log('hello')
-const allPosts = await Astro.glob('./*.{md,mdx}');
-console.log(allPosts)
+const allPosts = await Astro.glob<BlogPostInstance>('./*.{md,mdx}');
 allPosts.sort(sortPostsByDate);
 ---
 
