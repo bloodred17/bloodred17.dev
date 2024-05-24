@@ -2,9 +2,11 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/utils/readingTime';
 import rehypePrettyCode from 'rehype-pretty-code';
-import vercelStatic from '@astrojs/vercel/static';
-import react from '@astrojs/react';
+import svelte from '@astrojs/svelte';
 import sitemap from "@astrojs/sitemap";
+import mdx from '@astrojs/mdx';
+
+
 const options = {
   // Specify the theme to use or a custom theme json, in our case
   // it will be a moonlight-II theme from
@@ -30,18 +32,14 @@ const options = {
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://astro-tech-blog-ten.vercel.app/',
+	site: 'https://bloodred17.dev/',
 	markdown: {
+		// Disable syntax built-in syntax highlighting from astro
 		syntaxHighlight: false,
-		// Disable syntax built-in syntax hightlighting from astro
+		// Providing custom syntax highlighting
 		rehypePlugins: [[rehypePrettyCode, options]],
 		remarkPlugins: [remarkReadingTime]
 	},
-	integrations: [tailwind(), react(), sitemap()],
+	integrations: [tailwind(), svelte(), mdx(), sitemap()],
 	output: 'static',
-	adapter: vercelStatic({
-		webAnalytics: {
-			enabled: true
-		}
-	})
 });

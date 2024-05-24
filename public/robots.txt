@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nicdun.dev/sitemap-index.xml
+Sitemap: https://bloodred17.dev/sitemap-index.xml

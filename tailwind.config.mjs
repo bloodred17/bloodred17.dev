@@ -1,3 +1,4 @@
+import colors from 'tailwindcss/colors.js';
 
 const disabledCss = {
 	'code::before': false,

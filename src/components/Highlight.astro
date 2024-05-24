@@ -1,0 +1,11 @@
+---
+import { Astro } from 'astro/env';
+interface Props {
+	text: string | undefined
+}
+
+const { text } = Astro.props;
+---
+
+
+<span class="text-orange-600"> {text} </span>

@@ -8,8 +8,9 @@ import { sortPostsByDate } from '@/utils/data.util';
 
 const { title } = AppConfig;
 const { description } = AppConfig;
-
-const allPosts = await Astro.glob('./*.md');
+console.log('hello')
+const allPosts = await Astro.glob('./*.{md,mdx}');
+console.log(allPosts)
 allPosts.sort(sortPostsByDate);
 ---
 
