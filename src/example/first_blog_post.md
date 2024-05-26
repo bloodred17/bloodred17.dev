@@ -139,7 +139,7 @@ Inline-style:
 
 ## Syntax highlight
 
-```ts title="astro.config.mjs" showLineNumbers {1-2,5-6}
+```ts title="astro.config.ts" showLineNumbers {1-2,5-6}
 import { defineConfig } from "astro/config";
 import vercelStatic from "@astrojs/vercel/static";
 
