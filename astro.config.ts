@@ -5,7 +5,6 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import svelte from '@astrojs/svelte';
 import sitemap from "@astrojs/sitemap";
 import mdx from '@astrojs/mdx';
-import db from "@astrojs/db";
 
 
 const options = {
@@ -14,7 +13,7 @@ const options = {
   // https://github.com/atomiks/moonlight-vscode-theme/blob/master/src/moonlight-ii.json
   // Callbacks to customize the output of the nodes
   //theme: json,
-  onVisitLine(node) {
+  onVisitLine(node: any) {
     // Prevent lines from collapsing in `display: grid` mode, and
     // allow empty lines to be copy/pasted
     if (node.children.length === 0) {
@@ -24,7 +23,7 @@ const options = {
       }];
     }
   },
-  onVisitHighlightedLine(node) {
+  onVisitHighlightedLine(node: any) {
     // Adding a class to the highlighted line
     node.properties.className = ['highlighted'];
   }
@@ -41,6 +40,6 @@ export default defineConfig({
     rehypePlugins: [[rehypePrettyCode, options]],
     remarkPlugins: [remarkReadingTime]
   },
-  integrations: [tailwind(), svelte(), mdx(), sitemap(), db()],
-  output: 'server'
+  integrations: [tailwind(), svelte(), mdx(), sitemap()],
+  output: 'static'
 });
