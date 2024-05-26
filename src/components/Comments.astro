@@ -1,0 +1,51 @@
+---
+import { Comment, Commenter, db, eq, Reaction } from 'astro:db';
+import Form from './Form.svelte';
+import Section from './Section.astro';
+
+
+export interface Props {
+	postId: string,
+}
+
+const { postId } = Astro.props;
+
+const comments = await db.select().from(Comment).where(eq(Comment.postId, postId)).leftJoin(Commenter, eq(Comment.commenterEmail, Commenter.email));
+console.log(comments)
+
+const reaction = await db.select().from(Reaction).where(eq(Reaction.postId, postId));
+console.log(reaction)
+
+
+---
+
+
+<Section>
+	<div class="flex flex-col items-center">
+		<p class="px-14 pb-4 pt-6 text-center text-3xl font-bold"> Comments </p>
+	</div>
+	<div class="flex flex-col pb-4">
+		<Form client:load />
+	</div>
+	<div class="flex flex-col pb-4">
+		{
+			comments.map((data: any) => (
+				<div class="mb-4 basis-1">
+					<p class="font-black cursor-default flex gap-1 text-lg">
+						<!--<span class="text-purple-700"> {"<"} </span>-->
+						<span> {data.Commenter.name} </span>
+						<!--<span class="text-purple-700"> {">"} </span>-->
+
+						<span class="flex-grow"></span>
+						<!--<span class="space-x-1">-->
+						<!--	<span class="bg-zinc-800 rounded-2xl px-2 py-1"> 👍 <span class="text-white"> {reaction["👍"]} </span> </span>-->
+						<!--	<span class="bg-zinc-800 rounded-2xl px-2 py-1"> 👎 <span class="text-white"> {reaction["👎"]} </span> </span>-->
+						<!--</span>-->
+					</p>
+					<p class="font-light border-l border-l-purple-700 pl-4">{data.Comment.content}</p>
+				</div>
+			))
+		}
+	</div>
+</Section>
+
