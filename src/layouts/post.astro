@@ -7,6 +7,7 @@ import PostContent from '@/components/PostContent.astro';
 const { description } = AppConfig;
 
 const { frontmatter } = Astro.props;
+
 ---
 
 <Base head={{ title: frontmatter.title, description }}>
@@ -18,8 +19,11 @@ const { frontmatter } = Astro.props;
 			minutesRead={frontmatter.minutesRead}
 			pubDate={frontmatter.pubDate}
 			img={{ src: frontmatter.image.src, alt: frontmatter.image.alt }}
-		/>
-		<PostContent><slot /></PostContent>
+		></PostHeader>
+
+		<PostContent>
+			<slot />
+		</PostContent>
 	</div>
 </Base>
 

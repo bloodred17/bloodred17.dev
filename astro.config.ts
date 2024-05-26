@@ -5,6 +5,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import svelte from '@astrojs/svelte';
 import sitemap from "@astrojs/sitemap";
 import mdx from '@astrojs/mdx';
+import db from "@astrojs/db";
 
 
 const options = {
@@ -32,14 +33,14 @@ const options = {
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://bloodred17.dev/',
-	markdown: {
-		// Disable syntax built-in syntax highlighting from astro
-		syntaxHighlight: false,
-		// Providing custom syntax highlighting
-		rehypePlugins: [[rehypePrettyCode, options]],
-		remarkPlugins: [remarkReadingTime]
-	},
-	integrations: [tailwind(), svelte(), mdx(), sitemap()],
-	output: 'static',
+  site: 'https://bloodred17.dev/',
+  markdown: {
+    // Disable syntax built-in syntax highlighting from astro
+    syntaxHighlight: false,
+    // Providing custom syntax highlighting
+    rehypePlugins: [[rehypePrettyCode, options]],
+    remarkPlugins: [remarkReadingTime]
+  },
+  integrations: [tailwind(), svelte(), mdx(), sitemap(), db()],
+  output: 'server'
 });
